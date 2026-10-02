@@ -162,11 +162,14 @@
   // riferimento alla canzone della dedica della tesi, come un commento di codice
   add([D('/*')]);
   add([D(' * '), F('dedica della tesi:')]);
-  add([D(' * '), F('Qui per dirvi che è normale che a volte la vostra fiamma si affievolisca
-Basta un respiro per far tremare un fuoco
-Ricordatevi di non giudicarvi per questo
-Di non farvi soffocare dalla vostra cenere
-Basta un solo carbone ardente per dare inizio a una fiaccolata')]);
+  // >>> sostituisci VERSO 1, VERSO 2... con i tuoi versi: uno per riga, senza a capo dentro gli apici
+  add([D(' * '), F('Qui per dirvi che è normale che a volte la vostra fiamma si affievolisca')]);
+  add([D(' * '), F('Basta un respiro per far tremare un fuoco')]);
+  add([D(' * '), F('Ricordatevi di non giudicarvi per questo')]);
+  add([D(' * '), F('Di non farvi soffocare dalla vostra cenere')]);
+  add([D(' * '), F('Basta un solo carbone ardente per dare inizio a una fiaccolata')]);
+  // <<< fine dei versi
+  add([D(' * '), F('("Roccia", 22simba)')]);
   add([D(' */')]);
   add([]);
   box('VI VOGLIO BENE').forEach(function (l) { add(l); });
