@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grazie da Mattia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Layout: testo a sinistra come l'output di un terminale; righe di asterischi rosse (il nastro dell'alloro) e l'ortensia blu in asterischi colorati. Look unico scuro per scelta. */
+  :root {
+    --bg: #0C140F;
+    --fg: #E4EDE5;
+    --dim: #6F8A77;
+    --laurel: #8CC79B;
+    --ribbon: #E2574A;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-mono);
+    font-size: clamp(13px, 3.9vw, 18px);
+    line-height: 1.65;
+    padding-inline: 1.25rem;
+    padding-block: 2.5rem 4rem;
+  }
+  .screen {
+    max-width: 38rem;
+    margin-inline: auto;
+    min-height: 34rem;
+  }
+  pre#out {
+    margin: 0;
+    font: inherit;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+  .ln { min-height: 1.65em; }
+  /* disegno: 56 colonne, ridotta all'80% della larghezza disponibile */
+  .ln.fl {
+    white-space: pre;
+    line-height: 1.2;
+    min-height: 1.2em;
+    font-weight: 700;
+    font-size: min(15px, calc(min(100vw - 2.5rem, 38rem) * 0.8 / 33.6));
+  }
+  .star { color: var(--ribbon); }
+  .title { color: var(--fg); font-weight: 700; }
+  .dim, .com { color: var(--dim); }
+  .key { color: var(--laurel); }
+  .fn { color: var(--ribbon); }
+  .bar { color: var(--laurel); }
+  /* bacche e centri delle ortensie che lampeggiano piano, a disegno finito */
+  .live .tw { animation: twinkle 2.6s ease-in-out infinite; }
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; text-shadow: 0 0 0.4em currentColor; }
+    50% { opacity: 0.35; text-shadow: none; }
+  }
+  .hrt { cursor: pointer; }
+  /* pioggia di asterischi quando si tocca il cuore */
+  .rain { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 10; }
+  .drop {
+    position: absolute;
+    top: -2rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    animation: fall linear forwards;
+  }
+  @keyframes fall { to { transform: translateY(calc(100vh + 4rem)) rotate(320deg); } }
+  .cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.1em;
+    vertical-align: text-bottom;
+    background: var(--laurel);
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cursor, .live .tw { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+
+<main class="screen">
+  <p class="sr">Laurea di Matti. Dott. Mattia Cantore, Informatica per la Comunicazione Digitale, Università degli Studi di Milano. Tesi: Progettazione, implementazione e gestione di un sito per il supporto alla storia ed alla tecnica del Game Design. Laurea completata al 100%. Una corona d'alloro con ortensie celesti, bacche blu e un fiocco blu navy, disegnata con gli asterischi; dentro la corona un cuore rosso e la scritta Grazie per essere venuti. Vi voglio bene. Processo terminato con successo.</p>
+  <pre id="out" aria-hidden="true"></pre>
+</main>
+
+<script>
+  var PIANTA = [[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#458c50","#53985b","#77b578",null,null,null,null,null,null,null,null,"#599d60","#64a669","#7dba7d",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,["*","#9db8ff","t"],null,null,null,"#90c68f","#9acc98","#bbe1b8",null,"#327240","#3c8049","#54995c","#68a96c",null,null,null,"#9acc98","#499154",null,null,null,"#458c50","#42894e","#509659","#60a366",null,"#84be83","#bbe1b8","#c0e4bc",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,["*","#3358e0","t"],"#1f338f",null,"#70b073","#6dad70","#9dce9b","#9ece9c",null,"#377944","#41874d","#468d51",null,null,"#7eba7d","#77b578","#66a86b","#5b9f62","#4d9457","#468d51",null,null,"#327240","#30703f","#3f854c",null,"#6eae71","#86bf85","#94c893","#add8aa",null,"#52985b",["*","#3358e0","t"],"#1f338f",null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,"#3c8048","#54995c","#68a96c","#64a669","#53985b","#6fae71","#8dc48c","#2d6b3c","#2d6b3c","#68a96c","#71b073","#74b275","#71b073","#92c690",null,null,null,null,null,null,"#aad6a8","#a2d1a0","#83be83","#65a76a","#569b5e","#2d6b3c","#2d6b3c","#569b5e","#79b679","#9bcc99","#438a4f","#499053","#509659","#65a76a",null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,"#a8d5a5","#c0e4bc",null,"#397c46","#42884e","#488f52","#4a9154","#2d6b3c","#357743","#3e834a","#3c8048","#4a9255","#4f9558","#68a96c","#b1daae","#a7d4a4","#c0e4bc",null,null,null,null,null,null,"#8ac289","#74b275","#6eae71","#70b073","#63a568","#53985b","#3e824a","#3b7f48","#31703f","#2d6b3c","#387a45","#387b46","#43894e","#589c5f",null,"#90c68f","#c0e4bc",null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,"#2a86c4","#ddf4ff","#2d8ac8","#2a87c5",null,null,"#7ab87b","#7db97c","#95c994","#bde2b9",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#b4dcb0","#a7d4a4","#89c188","#95c994",null,null,"#9ddbff",["*","#eaf4d6","t"],"#b6e5ff","#2a86c4",null,null,null,null,null,null,null,null,null],[null,null,null,null,["*","#9db8ff","t"],null,null,"#2985c3","#318fcc","#bde8ff",["*","#eaf4d6","t"],"#d7f1ff","#3593d0","#318fcc","#2a86c4",null,["*","#9db8ff","t"],null,null,null,null,null,null,null,["*","#ff6a6d","h"],["*","#ff9091","h"],["*","#ff9091","h"],null,null,["*","#ff6a6d","h"],["*","#ff6a6d","h"],["*","#ff6a6d","h"],null,null,null,null,null,null,null,["*","#9db8ff","t"],null,"#2a86c4","#96d9ff","#3593d0","#8bd4fe","#3695d2","#4bb0ea","#318fcc","#2985c3",null,null,["*","#9db8ff","t"],null,null,null,null],[null,null,null,null,["*","#3358e0","t"],"#1f338f",null,"#2c88c6","#3b9bd7","#3695d1","#abe1ff","#3797d3","#3695d2","#3391ce","#2d89c7",null,["*","#3358e0","t"],"#1f338f",null,null,null,null,null,["*","#fb555b","h"],["*","#fb555b","h"],["*","#ff797b","h"],["*","#ff797b","h"],["*","#fb555b","h"],["*","#fb555b","h"],["*","#fb555b","h"],["*","#fb555b","h"],["*","#fb555b","h"],["*","#fb555b","h"],null,null,null,null,null,null,["*","#3358e0","t"],null,"#76c8f7",["*","#eaf4d6","t"],"#8ad4fe","#3797d3","#3a9ad7",["*","#eaf4d6","t"],"#45a9e3","#2c88c6",null,"#78b679",["*","#3358e0","t"],"#1f338f",null,null,null],[null,null,null,null,null,"#3d8149","#3d824a","#3695d2",["*","#eaf4d6","t"],"#3695d2","#3290cd","#3695d2",["*","#eaf4d6","t"],"#3695d2",null,null,null,null,null,null,null,null,null,null,["*","#f0464f","h"],["*","#f0464f","h"],["*","#f0464f","h"],["*","#f0464f","h"],["*","#f0464f","h"],["*","#f0464f","h"],["*","#f0464f","h"],["*","#f0464f","h"],null,null,null,null,null,null,null,null,null,null,"#66c0f3","#318ecc","#3291ce","#3290cd","#3695d2","#2b88c6",null,"#499154","#6eae71",null,null,null,null,null],[null,null,null,"#97ca96","#b6deb3","#c0e4bc",null,"#2a6538","#347542",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,["*","#e53744","h"],["*","#e53744","h"],["*","#e53744","h"],["*","#e53744","h"],["*","#e53744","h"],["*","#e53744","h"],null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#2c693b","#458c50",null,"#72b174","#90c68f","#c0e4bc",null,null,null],[null,null,null,null,"#8bc28a","#82bd82","#86bf85","#9ece9c","#347542","#42894e","#4b9255","#74b275",null,null,null,null,null,null,null,null,null,null,null,null,null,null,["*","#d82c3c","h"],["*","#d82c3c","h"],["*","#d82c3c","h"],["*","#d82c3c","h"],null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#60a366","#67a86b","#67a86b","#61a467","#62a467","#76b477","#87c086","#b6deb3",null,null,null,null],[null,null,null,null,null,"#599d60","#72b174","#68a96c","#317140","#3c8049","#4c9356","#599d60",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,["*","#ca2538","h"],["*","#ca2538","h"],null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#367844","#357642","#387a45","#3b7f48","#5da164","#6ead70","#82bd81",null,null,null,null,null],[null,null,null,"#3e824a","#3f834b","#42884d","#3e824a",null,"#42884d","#61a467","#6eae71","#8dc48c",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#65a76a","#7eba7e","#85bf85","#7eba7e","#2d6b3c","#2a6438","#337441","#367844","#448b50",null,null,null],[null,null,null,"#2b6639","#327341","#2c693b","#2a6438","#2c693b","#3a7d47","#5ea164","#66a76a","#76b477",null,null,null,null,null,null,null,null,null,null,null,["G","#F2F6F2","h"],["r","#F2F6F2","h"],["a","#F2F6F2","h"],["z","#F2F6F2","h"],["i","#F2F6F2","h"],["e","#F2F6F2","h"],null,["p","#F2F6F2","h"],["e","#F2F6F2","h"],["r","#F2F6F2","h"],null,null,null,null,null,null,null,null,null,null,null,"#41884d","#4e9457","#489053","#579b5e","#2a6438","#2c6a3b","#317140","#3a7e47","#478f52",null,null,null],[null,null,["*","#9db8ff","t"],null,null,null,null,null,"#2d6b3c","#327341","#3a7e47","#42884d",null,null,null,null,null,null,null,null,null,null,["e","#F2F6F2","h"],["s","#F2F6F2","h"],["s","#F2F6F2","h"],["e","#F2F6F2","h"],["r","#F2F6F2","h"],["e","#F2F6F2","h"],null,["v","#F2F6F2","h"],["e","#F2F6F2","h"],["n","#F2F6F2","h"],["u","#F2F6F2","h"],["t","#F2F6F2","h"],["i","#F2F6F2","h"],null,null,null,null,null,null,null,null,null,"#327240","#40864c","#488f52","#2d6b3c",null,null,null,null,null,["*","#9db8ff","t"],null,null],[null,null,["*","#3358e0","t"],"#1f338f","#64a669","#6aab6e","#5c9f62","#69aa6d","#70b073","#2a6539","#2f6f3e","#3c8049","#9bcc99",null,null,["*","#9db8ff","t"],null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#92c791","#2a6539","#2d6b3c","#367844","#3d8149","#4b9255","#5ea164","#74b376","#75b376","#add8aa",["*","#3358e0","t"],"#1f338f",null],[null,null,null,null,null,"#4e9457","#458c50","#448c50","#357743","#3b7e47",null,null,null,null,null,["*","#3358e0","t"],"#1f338f",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,["*","#3358e0","t"],null,null,"#e1efff",null,null,"#3c8049","#4d9457","#66a86b","#71b174","#8cc38b",null,null,null,null,null],[null,null,null,null,null,"#5fa265","#478f52","#4b9255",null,"#9ddbff",["*","#eaf4d6","t"],"#b6e5ff","#3291ce","#58b8ef",["*","#eaf4d6","t"],"#6dc3f5",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#2b88c5","#308ecb","#c8e1ff",["*","#eaf4d6","t"],"#d9ebff","#2f8cc9","#2a6438",null,"#357642","#327340","#3d824a",null,null,null,null,null],[null,null,null,null,null,null,"#2d6b3c",null,"#52b4ed","#308ecb","#8bd4fe","#3696d2","#8bd4fe","#3796d3","#4aafe9","#3290cd","#3695d2",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#2c89c6","#3290cd","#9edcff","#3796d3","#bbdaff","#3696d2","#3c9dd9","#308ecb","#2983c0",null,"#4a9154",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,["*","#eaf4d6","t"],"#4aaee8","#3493cf","#6cc3f5",["*","#eaf4d6","t"],"#80cefb","#3594d0","#3695d2",["*","#eaf4d6","t"],null,"#72b174",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#599d60",null,"#2b88c6","#7cccf9",["*","#eaf4d6","t"],"#91d7ff","#3796d3","#3695d2",["*","#eaf4d6","t"],"#3796d3",null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,"#2d8ac7","#308ecb","#5cbaf0","#318ecc","#2e8cc9","#2984c2",null,"#41874d","#5da063","#4260b7","#4260b7","#4260b7","#4260b7","#4260b7","#4260b7","#4260b7","#4260b7",null,null,"#4260b7","#4260b7","#4260b7","#4260b7","#4260b7","#4260b7","#4260b7","#4260b7","#4d9457","#589c5f",null,"#2984c2","#6cc3f5","#318ecc","#318fcc","#308ecb","#3695d2",null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#41874d","#327140","#2c693b","#2a6539","#3b58ac","#3b58ac","#162558","#162558","#162558","#162558","#162558","#3b58ac","#3b58ac","#3b58ac","#3b58ac","#3b58ac","#3b58ac","#162558","#162558","#162558","#162558","#162558","#3b58ac","#3b58ac","#2a6438","#2a6438","#2c6a3b","#357642",null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,["*","#3358e0","t"],"#1f338f","#347542","#2a6438","#2a6438",null,"#3450a2","#3450a2","#162558","#162558","#162558","#162558","#3450a2","#3450a2","#3450a2","#6782ce","#6782ce","#3450a2","#3450a2","#3450a2","#162558","#162558","#162558","#162558","#3450a2","#3450a2",null,"#357643","#3c8049","#448b4f","#4d9457",["*","#3358e0","t"],"#1f338f",null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#80bb7f","#76b477","#2e4998","#2e4998","#2e4998","#2e4998","#2e4998","#2e4998","#2e4998","#2e4998","#415fb6","#334fa1","#2e4998","#2e4998","#2e4998","#2e4998","#2e4998","#2e4998","#2e4998","#2e4998","#83bd82","#70b073",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#3d5aaf","#3d5aaf","#3d5aaf",null,null,"#2f4a9a","#2f4a9a","#2f4a9a",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#3855a8","#3855a8","#3855a8",null,null,null,null,"#2a4593","#2a4593","#2a4593",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#334fa1","#334fa1","#334fa1",null,null,null,null,null,null,"#26408c","#26408c","#26408c",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#2f4a9a","#2f4a9a","#2f4a9a",null,null,null,null,null,null,null,null,"#243c85","#243c85","#243c85",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#2a4593","#2a4593","#2a4593",null,null,null,null,null,null,null,null,null,null,"#22397f","#22397f","#22397f",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"#26408c",null,"#26408c",null,null,null,null,null,null,null,null,null,null,null,null,"#203679",null,"#203679",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]];
+  var W = 30;
+  var out = document.getElementById('out');
+  var cursor = document.createElement('span');
+  cursor.className = 'cursor';
+
+  function S(t) { return ['star', t]; }
+  function F(t) { return ['fg', t]; }
+  function D(t) { return ['dim', t]; }
+  function K(t) { return ['key', t]; }
+  function N(t) { return ['fn', t]; }
+  function C(t) { return ['com', t]; }
+  function center(t) {
+    var total = W - 2;
+    var l = Math.floor((total - t.length) / 2);
+    return new Array(l + 1).join(' ') + t + new Array(total - t.length - l + 1).join(' ');
+  }
+  var bar = new Array(W + 1).join('*');
+  function box(t) { return [[S(bar)], [S('*'), ['title', center(t)], S('*')], [S(bar)]]; }
+
+  // ogni riga: { s: segmenti [classe, testo, colore?], c: classe della riga }
+  var lines = [];
+  function add(segs, cls) { lines.push({ s: segs, c: cls || '' }); }
+  box('LAUREA DI MATTI').forEach(function (l) { add(l); });
+  add([]);
+  add([D('$ '), F('./laurea.sh')]);
+  add([]);
+  add([D('> '), F('Dott. Mattia Cantore')]);
+  add([D('> '), F('Informatica per la')]);
+  add([D('  '), F('Comunicazione Digitale')]);
+  add([D('> '), F('Università degli Studi')]);
+  add([D('  '), F('di Milano')]);
+  add([D('> '), F('tesi: Progettazione,')]);
+  add([D('  '), F('implementazione e gestione')]);
+  add([D('  '), F('di un sito per il supporto')]);
+  add([D('  '), F('alla storia ed alla tecnica')]);
+  add([D('  '), F('del Game Design')]);
+  add([]);
+  add([], 'bar');                                   // barra di caricamento animata
+  add([D('> '), F('laurea completata')]);
+  add([]);
+  // pianta di ortensie: una riga per ogni riga della griglia, un asterisco colorato per cella
+  PIANTA.forEach(function (row) {
+    var segs = [], gap = '';
+    row.forEach(function (col) {
+      if (col) {
+        if (gap) { segs.push(['fg', gap]); gap = ''; }
+        // una cella è un colore (asterisco) oppure [carattere, colore, tipo]:
+        // tipo 't' lampeggia, tipo 'h' è il cuore o la scritta (toccabile)
+        if (typeof col === 'string') segs.push(['st', '*', col]);
+        else segs.push(['st' + (col[2] === 't' ? ' tw' : '') + (col[2] === 'h' ? ' hrt' : ''), col[0], col[1]]);
+      } else { gap += ' '; }
+    });
+    add(segs, 'fl');
+  });
+  add([]);
+  box('VI VOGLIO BENE').forEach(function (l) { add(l); });
+  add([]);
+  add([D('$ '), F('exit 0')]);
+  add([C('Processo terminato con successo.')]);
+  add([]);
+  add([C('// psst: tocca il cuore')]);
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var run = 0;
+
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function speedFor(cls) {
+    if (cls === 'star') return 9;
+    if (cls.slice(0, 2) === 'st') return 6;
+    return (cls === 'fg' || cls === 'title') ? 30 : 42;
+  }
+  function mkSpan(seg) {
+    var sp = document.createElement('span');
+    sp.className = seg[0];
+    if (seg[2]) sp.style.color = seg[2];
+    if (seg[0].indexOf('tw') > -1) sp.style.animationDelay = (-Math.random() * 2.6).toFixed(2) + 's';
+    return sp;
+  }
+  function barText(n) {
+    return '[' + new Array(n + 1).join('#') + new Array(11 - n).join('.') + '] ' + (n * 10) + '%';
+  }
+  function barLine(div, n) {
+    div.textContent = '';
+    var a = document.createElement('span'); a.className = 'dim'; a.textContent = '> ';
+    var b = document.createElement('span'); b.className = 'bar'; b.textContent = barText(n);
+    div.appendChild(a); div.appendChild(b);
+  }
+
+  // pioggia di asterischi colorati quando si tocca il cuore o la scritta
+  var COLORI = ['#E2574A', '#FF5A5F', '#4DB2EC', '#8ED6FF', '#3358E0', '#7CB97C', '#EAF4D6', '#4361B8'];
+  function rain() {
+    if (reduce) return;
+    var box = document.createElement('div');
+    box.className = 'rain';
+    document.body.appendChild(box);
+    for (var i = 0; i < 70; i++) {
+      var d = document.createElement('span');
+      d.className = 'drop';
+      d.textContent = '*';
+      d.style.left = (Math.random() * 100).toFixed(1) + '%';
+      d.style.color = COLORI[Math.floor(Math.random() * COLORI.length)];
+      d.style.fontSize = (12 + Math.random() * 18).toFixed(0) + 'px';
+      d.style.animationDuration = (2.2 + Math.random() * 2).toFixed(2) + 's';
+      d.style.animationDelay = (Math.random() * 0.9).toFixed(2) + 's';
+      box.appendChild(d);
+    }
+    setTimeout(function () { box.remove(); }, 5500);
+  }
+  out.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('.hrt')) rain();
+  });
+  function follow() {
+    try { cursor.scrollIntoView({ block: 'nearest' }); } catch (e) {}
+  }
+
+  function renderStatic() {
+    out.textContent = '';
+    lines.forEach(function (ln) {
+      var div = document.createElement('div');
+      div.className = 'ln' + (ln.c ? ' ' + ln.c : '');
+      if (ln.c === 'bar') barLine(div, 10);
+      ln.s.forEach(function (seg) { var sp = mkSpan(seg); sp.textContent = seg[1]; div.appendChild(sp); });
+      out.appendChild(div);
+    });
+    out.lastChild.appendChild(cursor);
+    out.classList.add('live');
+  }
+
+  async function play() {
+    var id = ++run;
+    out.textContent = '';
+    out.classList.remove('live');
+    try { window.scrollTo(0, 0); } catch (e) {}
+    for (var i = 0; i < lines.length; i++) {
+      var ln = lines[i];
+      var div = document.createElement('div');
+      div.className = 'ln' + (ln.c ? ' ' + ln.c : '');
+      out.appendChild(div);
+      // la corona è finita: bacche e centri iniziano a lampeggiare
+      if (ln.c !== 'fl' && i > 0 && lines[i - 1].c === 'fl') out.classList.add('live');
+      if (ln.c === 'bar') {
+        for (var n = 0; n <= 10; n++) {
+          barLine(div, n);
+          div.appendChild(cursor);
+          await sleep(n === 10 ? 400 : 170 + Math.random() * 160);
+          if (id !== run) return;
+        }
+        follow();
+        continue;
+      }
+      div.appendChild(cursor);
+      for (var j = 0; j < ln.s.length; j++) {
+        var seg = ln.s[j], text = seg[1];
+        var sp = mkSpan(seg);
+        div.insertBefore(sp, cursor);
+        var quick = ln.c === 'fl' && seg[0] === 'fg';
+        for (var k = 0; k < text.length; k++) {
+          sp.textContent += text.charAt(k);
+          if (!quick) await sleep(speedFor(seg[0]));
+          if (id !== run) return;
+        }
+      }
+      follow();
+      await sleep(ln.c === 'fl' ? 25 : (ln.s.length ? 260 : 120));
+      if (id !== run) return;
+    }
+    await sleep(15000);
+    if (id === run) play();
+  }
+
+  if (reduce) { renderStatic(); } else { play(); }
+</script>
+
+</body>
+</html>
