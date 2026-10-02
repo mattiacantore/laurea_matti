@@ -98,7 +98,7 @@
 
 
 <main class="screen">
-  <p class="sr">Laurea di Matti. Dott. Mattia Cantore, Informatica per la Comunicazione Digitale, Università degli Studi di Milano. Tesi: Progettazione, implementazione e gestione di un sito per il supporto alla storia ed alla tecnica del Game Design. Laurea completata al 100%. Una corona d'alloro con ortensie celesti, bacche blu e un fiocco blu navy, disegnata con gli asterischi; dentro la corona un cuore rosso e la scritta Grazie per essere venuti. Vi voglio bene. Processo terminato con successo.</p>
+  <p class="sr">Laurea di Matti. Dott. Mattia Cantore, Informatica per la Comunicazione Digitale, Università degli Studi di Milano. Tesi: Progettazione, implementazione e gestione di un sito per il supporto alla storia ed alla tecnica del Game Design. Laurea completata al 100%. Una corona d'alloro con ortensie celesti, bacche blu e un fiocco blu navy, disegnata con gli asterischi; dentro la corona un cuore rosso e la scritta Grazie per essere venuti. Dedica della tesi: Roccia, di 22simba. Vi voglio bene. Processo terminato con successo.</p>
   <pre id="out" aria-hidden="true"></pre>
 </main>
 
@@ -158,6 +158,16 @@
     });
     add(segs, 'fl');
   });
+  add([]);
+  // riferimento alla canzone della dedica della tesi, come un commento di codice
+  add([D('/*')]);
+  add([D(' * '), F('dedica della tesi:')]);
+  add([D(' * '), F('Qui per dirvi che è normale che a volte la vostra fiamma si affievolisca
+Basta un respiro per far tremare un fuoco
+Ricordatevi di non giudicarvi per questo
+Di non farvi soffocare dalla vostra cenere
+Basta un solo carbone ardente per dare inizio a una fiaccolata')]);
+  add([D(' */')]);
   add([]);
   box('VI VOGLIO BENE').forEach(function (l) { add(l); });
   add([]);
