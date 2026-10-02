@@ -55,6 +55,7 @@
   .key { color: var(--laurel); }
   .fn { color: var(--ribbon); }
   .bar { color: var(--laurel); }
+  .lnk { color: var(--laurel); text-decoration: underline dotted; text-underline-offset: 0.2em; }
   /* bacche e centri delle ortensie che lampeggiano piano, a disegno finito */
   .live .tw { animation: twinkle 2.6s ease-in-out infinite; }
   @keyframes twinkle {
@@ -169,8 +170,9 @@
   add([D(' * '), F('Di non farvi soffocare dalla vostra cenere')]);
   add([D(' * '), F('Basta un solo carbone ardente per dare inizio a una fiaccolata')]);
   // <<< fine dei versi
-  add([D(' * '), F('("Roccia", 22simba)')]);
   add([D(' */')]);
+  // link alla canzone ufficiale, dal punto dei versi (cambia t=121s per spostare l'inizio)
+  add([D('$ '), ['lnk', 'play "Roccia" - 22simba', null, 'https://www.youtube.com/watch?v=PGtcFvsae40&t=121s']]);
   add([]);
   box('VI VOGLIO BENE').forEach(function (l) { add(l); });
   add([]);
@@ -189,8 +191,9 @@
     return (cls === 'fg' || cls === 'title') ? 30 : 42;
   }
   function mkSpan(seg) {
-    var sp = document.createElement('span');
+    var sp = document.createElement(seg[3] ? 'a' : 'span');
     sp.className = seg[0];
+    if (seg[3]) { sp.href = seg[3]; sp.target = '_blank'; sp.rel = 'noopener'; }
     if (seg[2]) sp.style.color = seg[2];
     if (seg[0].indexOf('tw') > -1) sp.style.animationDelay = (-Math.random() * 2.6).toFixed(2) + 's';
     return sp;
